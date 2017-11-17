@@ -29,22 +29,24 @@ public class Lectura extends Thread{
     }
     
     public void run(){
-        String salida = "Leí el mensaje y te respondí";
+        String salida = "Leí el mensaje y te respondí";//mensaje de salida (contestación a los correos entrantes)
         while(true){
-            synchronized(q){ 
+            synchronized(q){//sincronizamos 
                 try {
-                    while(q.isEmpty()){
-                        System.out.println("¡Enhorabuena! no tienes ningún mensaje sin leer en tu bandeja.");
+                    while(q.isEmpty()){//cuando lea un mensaje de la bandeja saltará este mensaje si tiene más mensajes por leer saltará otro deseguido
+                        System.out.println("<---->");
+                        System.out.println("¡Terminado! Esperando más mensajes");
+                        System.out.println("<---->");
                         try{
                             q.wait();
                         }catch(Exception ex){
                             ex.printStackTrace();
                         }
-                    }
+                    }//mensajes para indicar que fue leído el correo entrante más una respuesta automática
                     System.out.println("Mensaje leído");
                     System.out.println("Enviando respuesta automática....");
                     Thread.sleep(segundos * 1000);
-                    System.out.println("Respondido-> "+salida+" "+q.remove());
+                    System.out.println("Respondido-> "+salida+" "+q.remove());//mensaje que fue respondido con éxito
                     q.notifyAll();
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Lectura.class.getName()).log(Level.SEVERE, null, ex);

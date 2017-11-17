@@ -29,26 +29,27 @@ public class Correo extends Thread{
         this.maximo = maximo;
         
     }
-
+    
     public void run(){
-        String entrada = "Hola soy el mensaje de entrada";
-            synchronized (q){
-                for(int p=0; p<2; p++){
+        String entrada = "Hola soy el mensaje de entrada";//mensaje de entrada
+            synchronized (q){//sincronizacion
+                for(int p=0; p<2; p++){//mensaje entrante al correo será 1 máximo
                     try {
-                        while (q.size() == maximo){
+                        while (q.size() == maximo){//cuando llegue la bandeja al máximo
                             try {
-                                System.out.println("¡Advertencia! Bandeja de entrada llena");
+                                System.out.println("¡Advertencia! Bandeja de entrada llena");//salta este mensaje
                                 q.wait();
-                                if(q.size()<1){
-                                System.out.println("Te quedan mensajes por leer. Siguiente mensaje...");
-                                Thread.sleep(segundos * 1000);
-                        }
+                                if(q.size()<1){//al tener más mensajes avisará de que tienes más mensajes por leer
+                                System.out.println("Te quedan mensajes por leer mensajes, mensaje número: "+p+" Abriendo ...");
+                                System.out.println("<---->");
+                                Thread.sleep(segundos * 1000);//intervalo de tiempo entre ejecuciones
+                                }
                             } catch (Exception ex) {
                             }
                         }
                         Random random = new Random();
-                        int i = random.nextInt(500)+1;
-                        System.out.println("Nuevo correo entrante sin leer-> "+entrada+" "+i);
+                        int i = random.nextInt(500)+1;//le asigno un número aleatorio al mensaje para diferenciarlos
+                        System.out.println("Nuevo correo entrante sin leer-> "+entrada+" "+i);//aviso de correo nuevo más su contenido
                         Thread.sleep(segundos * 1000);
                         q.add(i);
                         q.notifyAll();

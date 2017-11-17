@@ -19,7 +19,7 @@ public class Exercicio7 {
     public static void main(String[] args) {
         // TODO code application logic here
         Queue ma = new LinkedList<>();
-        int maximo = 1;
+        int maximo = 1;//máximo de mensajes entre correo entrante y salida
         
         Correo email1 = new Correo(false, "entrada", ma, maximo);
         Lectura lect1 = new Lectura(true, "salida", ma, maximo);
