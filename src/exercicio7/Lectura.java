@@ -35,7 +35,7 @@ public class Lectura extends Thread{
                 try {
                     while(q.isEmpty()){//cuando lea un mensaje de la bandeja saltará este mensaje si tiene más mensajes por leer saltará otro deseguido
                         System.out.println("<---->");
-                        System.out.println("¡Terminado! Esperando más mensajes");
+                        System.out.println("¡Terminado! Esperando más mensajes...");
                         System.out.println("<---->");
                         try{
                             q.wait();
@@ -43,7 +43,7 @@ public class Lectura extends Thread{
                             ex.printStackTrace();
                         }
                     }//mensajes para indicar que fue leído el correo entrante más una respuesta automática
-                    System.out.println("Mensaje leído");
+                    System.out.println("¡Éxito! Mensaje leído");
                     System.out.println("Enviando respuesta automática....");
                     Thread.sleep(segundos * 1000);
                     System.out.println("Respondido-> "+salida+" "+q.remove());//mensaje que fue respondido con éxito
