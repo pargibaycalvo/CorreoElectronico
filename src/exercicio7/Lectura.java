@@ -34,7 +34,7 @@ public class Lectura extends Thread{
             synchronized(q){ 
                 try {
                     while(q.isEmpty()){
-                        System.out.println("Enhorabuena! no tienes ningún mensaje sin leer en tu bandeja.");
+                        System.out.println("¡Enhorabuena! no tienes ningún mensaje sin leer en tu bandeja.");
                         try{
                             q.wait();
                         }catch(Exception ex){

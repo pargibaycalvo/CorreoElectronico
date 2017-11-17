@@ -33,12 +33,16 @@ public class Correo extends Thread{
     public void run(){
         String entrada = "Hola soy el mensaje de entrada";
             synchronized (q){
-                for(int p=0; p<1; p++){
+                for(int p=0; p<2; p++){
                     try {
                         while (q.size() == maximo){
                             try {
-                                System.out.println("Bandeja de entrada llena");
+                                System.out.println("¡Advertencia! Bandeja de entrada llena");
                                 q.wait();
+                                if(q.size()<1){
+                                System.out.println("Te quedan mensajes por leer. Siguiente mensaje...");
+                                Thread.sleep(segundos * 1000);
+                        }
                             } catch (Exception ex) {
                             }
                         }
